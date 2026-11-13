@@ -1,22 +1,21 @@
-# Modern Engine Core
+# Forge
+Tool for building C projects, with a C program.
 
-Small single-header C library for game engine code: memory, strings, files, data structures, logging.
+Targets C99 (`-std=c99`) on GCC and clang
 
-Targets C99 (`-std=c99`) on GCC and clang.
+## Quick Start
 
-## Usage
-
-Define `MEC_IMPL` in exactly one `.c` file before including the headers:
+1. Add `forge` to your project (e.g., as a Git submodule or a header in your include path).
+2. Create a `forge.c` build script in your root directory.
+3. Define `FORGE_IMPL` in that single file before including the header:
 
 ```c
-#define MEC_IMPL
-#include "mec/mec.h"
-```
+#define FORGE_IMPL
+#include "forge/forge.h"
 
-Every other file includes the headers without the define.
-
-## Build
-
-```sh
-./build.sh
-```
+int main(int argc, char **argv)
+{
+    // configure targets, source files, and build steps here
+    ...    
+    return 0;
+}.
