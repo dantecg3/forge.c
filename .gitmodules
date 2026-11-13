@@ -1,0 +1,3 @@
+[submodule "vendor/mec"]
+	path = vendor/mec
+	url = git@github.com:dantecg3/mec.c.git
