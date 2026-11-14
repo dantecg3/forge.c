@@ -8,10 +8,6 @@ Forge depends on [Modern Engine Core (`mec.c`)](https://github.com/dantecg3/mec.
 
 ## Quick Start
 
-1. Add `forge` to your project (e.g., as a Git submodule or a header in your include path).
-2. Create a `forge.c` build script in your root directory.
-3. Define `FORGE_IMPL` in that single file before including the header:
-
 ```c
 #define MEC_IMPL
 #include "mec/mec.h"
