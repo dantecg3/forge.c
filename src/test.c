@@ -1,5 +1,5 @@
 #define MEC_IMPL
-#include "mec.h"
+#include "mec/mec.h"
 
 static const char *LEVEL_COLORS[] = {
   "\x1b[90m",   // TRACE: gray
