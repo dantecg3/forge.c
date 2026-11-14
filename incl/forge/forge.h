@@ -85,7 +85,7 @@ FORGE_Target forge_add_target (FORGE forge, STR_View program)
     }
 
   $dynarr_append (&header->targets, &target);
-  return target;
+  return header->targets[$dynarr_length (header->targets) - 1];
 }
 
 void forge (FORGE forge)
