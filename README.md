@@ -39,15 +39,13 @@ int main (int $unused argc, char $unused **argv)
         return -1;
     }
 
-    // Add compiler flags, include paths, sources, and output binary
     forge_target_add_argument (&build, str_view (" -std=c99 -Wall -Wextra -pedantic"));
     forge_target_add_argument (&build, str_view (" -Iincl -Ivendor/mec/incl"));
     forge_target_add_argument (&build, str_view (" src/test.c"));
     forge_target_add_argument (&build, str_view (" -o bin/test"));
 
-    // Execute build queue
     forge (f);
 
     forge_free (&f);
     return 0;
-}`
+}
