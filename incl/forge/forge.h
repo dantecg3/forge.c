@@ -16,7 +16,7 @@ int forge_run_command (STR_View command);
 
 FORGE forge_new (MEM_Allocator alloc);
 void forge_free (FORGE *p_forge);
-FORGE_Target forge_add_target (FORGE forge, STR_View program);
+FORGE_Target *forge_add_target (FORGE forge, STR_View program);
 void forge (FORGE forge);
 void forge_target_add_argument (FORGE_Target *p_target, STR_View arg);
 
@@ -64,14 +64,14 @@ void forge_free (FORGE *p_forge)
   FORGE_Header *header = (FORGE_Header *)(*p_forge);
   MEM_Allocator alloc = header->alloc;
 
-  for (usize i = 0; i < dynarr_length (header->targets); ++i)
+  for (usize i = 0; i < $dynarr_length (header->targets); ++i)
     str_free (&header->targets[i]);
 
   $dynarr_free (&header->targets);
   $mem_free (p_forge, alloc);
 }
 
-FORGE_Target forge_add_target (FORGE forge, STR_View program)
+FORGE_Target *forge_add_target (FORGE forge, STR_View program)
 {
   $assert (forge != NULL, "");
 
@@ -85,7 +85,7 @@ FORGE_Target forge_add_target (FORGE forge, STR_View program)
     }
 
   $dynarr_append (&header->targets, &target);
-  return header->targets[$dynarr_length (header->targets) - 1];
+  return &header->targets[$dynarr_length (header->targets) - 1];
 }
 
 void forge (FORGE forge)

@@ -32,17 +32,17 @@ int main (int argc, char **argv)
   
   forge_run_command (str_view ("mkdir -p bin"));
 
-  FORGE_Target build = forge_add_target (f, str_view ("cc"));
+  FORGE_Target *build = forge_add_target (f, str_view ("cc"));
   if (build == NULL)
     {
       $error ("failed to create build");
       return -1;
     }
 
-  forge_target_add_argument (&build, str_view ("-std=c99 -Wall -Wextra -pedantic"));
-  forge_target_add_argument (&build, str_view ("-Iincl -Ivendor/mec/incl"));
-  forge_target_add_argument (&build, str_view ("src/test.c"));
-  forge_target_add_argument (&build, str_view ("-o bin/test"));
+  forge_target_add_argument (build, str_view ("-std=c99 -Wall -Wextra -pedantic"));
+  forge_target_add_argument (build, str_view ("-Iincl -Ivendor/mec/incl"));
+  forge_target_add_argument (build, str_view ("src/test.c"));
+  forge_target_add_argument (build, str_view ("-o bin/test"));
 
   forge (f);
 
