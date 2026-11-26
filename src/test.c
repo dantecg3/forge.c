@@ -1,4 +1,5 @@
 #define MEC_IMPL
+#define MEC_NO_EMBED
 #include "mec/mec.h"
 
 static const char *LEVEL_COLORS[] = {
@@ -16,9 +17,14 @@ static void colored_stdout_sink (void $unused *context , LOG_Level level, const 
   printf ("%s%s" ANSI_RESET "\n", LEVEL_COLORS[level], msg);
 }
 
+static inline void error_stack_sink (ERROR err)
+{
+  $error (ERR_FMT " %s", err.code, err.msg);
+}
+
 int main (void)
 {
-  mec_init_context ();
+  mec_init_context (error_stack_sink);
   log_add_sink (&s_context.logger, colored_stdout_sink, NULL);
 
   $info ("Hello, World!");
