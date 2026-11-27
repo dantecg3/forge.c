@@ -30,7 +30,7 @@ typedef struct FORGE_Header
 
 int forge_run_command (STR_View command)
 {
-  $mem_scope_init (1 * MEM_KB, &s_context.temp_allocator);
+  $mem_scope_init (64 * MEM_KB, &s_context.temp_allocator);
   STR_C command_c = str_c_new (command, s_context.temp_allocator);
   $debug ("forge running '"SV_FMT"'", SV_ARG (command));
   return system (command_c);
